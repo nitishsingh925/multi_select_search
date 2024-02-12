@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Pill from "./components/Pill";
-import useFetch from "./components/hooks/useFetch";
+import useFetch from "./hooks/useFetch";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
