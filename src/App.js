@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import Pill from "./Pill";
+import Pill from "./components/Pill";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
