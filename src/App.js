@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Pill from "./components/Pill";
+import useFetch from "./components/hooks/useFetch";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,31 +11,10 @@ function App() {
 
   const inputRef = useRef(null);
 
-  const fetchUsers = async () => {
-    if (searchTerm.trim() === "") {
-      setSuggestions([]);
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `https://dummyjson.com/users/search?q=${searchTerm}`
-      );
-      const data = await response.json();
-      setSuggestions(data);
-    } catch (error) {
-      console.log("Error fetching users", error);
-    }
-  };
-
+  const data = useFetch(searchTerm);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchUsers();
-    }, 300);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchTerm]);
+    setSuggestions(data);
+  }, [data]);
 
   const handleSelectUser = (user) => {
     setSelectedUsers([...selectedUsers, user]);
