@@ -28,7 +28,12 @@ function App() {
   };
 
   useEffect(() => {
-    fetchUsers();
+    const timer = setTimeout(() => {
+      fetchUsers();
+    }, 300);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [searchTerm]);
 
   const handleSelectUser = (user) => {
